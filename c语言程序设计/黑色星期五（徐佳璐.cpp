@@ -1,0 +1,98 @@
+#include<stdio.h>  
+int main(void)  
+{  
+    int total1[13],total2[13],month[13];  
+    int N,W,n,l,j;  
+    scanf("%d",&N);  
+    total1[1]=31;total1[2]=28;total1[3]=31;total1[4]=30;total1[5]=31;total1[6]=30;  
+    total1[7]=31;total1[8]=31;total1[9]=30;total1[10]=31;total1[11]=30;total1[12]=31;  
+    total2[1]=31;total2[2]=29;total2[3]=31;total2[4]=30;total2[5]=31;total2[6]=30;  
+    total2[7]=31;total2[8]=31;total2[9]=30;total2[10]=31;total2[11]=30;total2[12]=31;  
+    if(N%4==0)  
+    {  
+        l=0;  
+        W=(((N-1904)/4)*5+3)%7;  
+        for(n=1;n<=12;n++)  
+        {  
+            if(W==5)  
+            {  
+                l++;  
+                month[l]=n;  
+                W=(W+total2[n])%7;  
+            }  
+            else  
+            {  
+                W=(W+total2[n])%7;  
+            }  
+        }  
+    }  
+    if(N%4==1)  
+    {  
+        l=0;  
+        W=(((N-1901)/4)*5)%7;  
+        for(n=1;n<=12;n++)  
+        {  
+            if(W==5)  
+            {  
+                l++;  
+                month[l]=n;  
+                W=(W+total1[n])%7;  
+            }  
+            else  
+            {  
+                W=(W+total1[n])%7;  
+            }  
+        }  
+    }  
+    if(N%4==2)  
+    {  
+        l=0;  
+        W=(((N-1901)/4)*5+1)%7;  
+        for(n=1;n<=12;n++)  
+        {  
+            if(W==5)  
+            {  
+                l++;  
+                month[l]=n;  
+                W=(W+total1[n])%7;  
+            }  
+            else  
+            {  
+                W=(W+total1[n])%7;  
+            }  
+        }  
+    }  
+    if(N%4==3)  
+    {  
+        l=0;  
+        W=(((N-1901)/4)*5+2)%7;  
+        for(n=1;n<=12;n++)  
+        {  
+            if(W==5)  
+            {  
+                l++;  
+                month[l]=n;  
+                W=(W+total1[n])%7;  
+            }  
+            else  
+            {  
+                W=(W+total1[n])%7;  
+            }  
+        }  
+    }  
+    if(l>=2)  
+    {  
+        printf("There are %d Black Fridays in year %d.\n",l,N);  
+        printf("They are:\n");  
+    }   
+    else  
+    {  
+        printf("There is %d Black Friday in year %d.\n",l,N);  
+        printf("It is:\n");  
+    }  
+    for(j=1;j<=l;j++)  
+    {  
+        printf("%d/%d/13\n",N,month[j]);  
+    }  
+    return 0;  
+}
